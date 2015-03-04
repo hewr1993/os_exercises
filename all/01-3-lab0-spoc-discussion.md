@@ -23,7 +23,7 @@
 如何把一个在gdb中或执行过程中出现的物理/线性地址与你写的代码源码位置对应起来？
 - [x]  
 
->   
+>  通过break命令加行号可以得到物理地址，list命令加\*物理地址可以得到行号。 
 
 了解函数调用栈对lab实验有何帮助？
 - [x]  
@@ -44,17 +44,17 @@
 搭建好实验环境，请描述碰到的困难和解决的过程。
 - [x]  
 
-> 
+>  在Mac OS X上安装i386-elf套装，没法用brew，只能用macports。而macports的installer众所周知特容易卡，所以等了特别长的时间。
 
 熟悉基本的git命令行操作命令，从github上的[ucore git repo](http://www.github.com/chyyuu/ucore_lab)下载ucore lab实验
 - [x]  
 
-> 
+> 没问题
 
 尝试用qemu+gdb（or ECLIPSE-CDT）调试lab1
 - [x]  
 
-> 
+> 没问题
 
 对于如下的代码段，请说明”：“后面的数字是什么含义
 ```
@@ -73,7 +73,7 @@ struct gatedesc {
 ```
 - [x]  
 
-> 
+> 表示位域
 
 对于如下的代码段，
 ```
@@ -115,5 +115,4 @@ SETGATE(intr, 0,1,2,3);
 - [x]  
 
 >  
-
 ---
