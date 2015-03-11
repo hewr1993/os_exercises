@@ -20,7 +20,7 @@ NOTICE
  ```
 - [x]  
 
->  
+>  设置时钟中断中断码，将时钟中断处理程序入口地址以及offset组成时钟中断描述符。对8259中断控制器，依次写入ICW1、ICW2、ICW3、ICW4设置初始工作方式。对时钟外设，设置每秒中断100次，且中断控制器使能时钟中断。
 
 lab1中完成了对哪些外设的访问？ (w2l2)
  ```
@@ -32,7 +32,7 @@ lab1中完成了对哪些外设的访问？ (w2l2)
  ```
 - [x]  
 
->  
+>  时钟，串口，并口，CGA，键盘。
 
 lab1中的cprintf函数最终通过哪些外设完成了对字符串的输出？ (w2l2)
  ```
@@ -44,7 +44,7 @@ lab1中的cprintf函数最终通过哪些外设完成了对字符串的输出？
  ```
 - [x]  
 
->  
+>  利用了串口，并口，CGA。
 
 ---
 
@@ -55,18 +55,39 @@ lab1中的cprintf函数最终通过哪些外设完成了对字符串的输出？
 lab1中printfmt函数用到了可变参，请参考写一个小的linux应用程序，完成实现定义和调用一个可变参数的函数。(spoc)
 - [x]  
 
+```
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
+
+int print_list(int num, ... ) {
+	va_list argp;
+	va_start(argp, num);
+	for (int i = 0; ; i++) {
+		int tmp = va_arg(valist, int);
+		if (tmp < 0) break;
+		printf("%d: %d", i + 1, tmp);
+    }
+	va_end(argp);
+	return 0;
+}
+
+void main() {
+	print_list(2, 4, 6, 1, 3, 5, -1);
+}
+```
 
 
 如果让你来一个阶段一个阶段地从零开始完整实现lab1（不是现在的填空考方式），你的实现步骤是什么？（比如先实现一个可显示字符串的bootloader（描述一下要实现的关键步骤和需要注意的事项），再实现一个可加载ELF格式文件的bootloader（再描述一下进一步要实现的关键步骤和需要注意的事项）...） (spoc)
 - [x]  
 
-> 
+>  
 
 
 如何能获取一个系统调用的调用次数信息？如何可以获取所有系统调用的调用次数信息？请简要说明可能的思路。(spoc)
 - [x]  
 
-> 
+>  Linux系统中，直接使用strace即可查看程序运行时所有的系统调用，包括名称、时间、次数等等；而在ucore中，只需要修改syscall.c和trap.c，在系统调用处打印调试信息，包括调用次数。
 
 如何修改lab1, 实现一个可显示字符串"THU LAB1"且依然能够正确加载ucore OS的bootloader？如果不能完成实现，请说明理由。
 - [x]  
