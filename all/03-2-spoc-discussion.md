@@ -22,7 +22,9 @@ NOTICE
  ```
 - [x]  
 
->  
+* 64位系统地址空间达到2^64，采用多级页表，x86_64系统使用四级页表
+* 多级页表中，得到虚拟地址，由PDBR加偏移值得到一级地址，查得二级页表基地址，以此类推，最后一级页表移位后加偏移得到物理地址。
+* 反置页表中，根据虚拟地址查表得到页表项，得到对应物理地址。
 
 ## 小组思考题
 ---
@@ -31,7 +33,9 @@ NOTICE
 
 - [x]  
 
-> 500=0.9\*150+0.1\*x
+* 设为x
+* 0.5ms=0.9\*150ns+0.1\*x
+* 解得x=3650ns
 
 （2）(spoc) 有一台假想的计算机，页大小（page size）为32 Bytes，支持32KB的虚拟地址空间（virtual address space）,有4KB的物理内存空间（physical memory），采用二级页表，一个页目录项（page directory entry ，PDE）大小为1 Byte,一个页表项（page-table entries
 PTEs）大小为1 Byte，1个页目录表大小为32 Bytes，1个页表大小为32 Bytes。页目录基址寄存器（page directory base register，PDBR）保存了页目录表的物理地址（按页对齐）。
